@@ -4,6 +4,7 @@ document.getElementById('btn-play').addEventListener('click',function(){
 })
 
 function play(){
+
   // prendo il value in base alla difficoltà selezionata
   const level = parseInt(document.getElementById('level').value)
 
@@ -29,6 +30,8 @@ function play(){
   const NUM_BOMBS = 16;
   const bombs = bombsGenerator();
   console.log(bombs);
+
+  let points=0;
 
 
   console.log(numSquare);
@@ -69,12 +72,15 @@ function play(){
   function clickSquare(event){
     console.log(event.target.innerText);
     
+    // aggiungo classe al click
     if (bombs.includes(parseInt(event.target.innerText))) {
       console.log('hai perso');
-      return this.classList.add('bomb');
+      this.classList.add('bomb');
+      alert(`Game Over. Score =${points}`);
     }else {
       console.log('continua');
-      return this.classList.add('clicked');
+      points++;
+      this.classList.add('clicked');
     }
     
   }
