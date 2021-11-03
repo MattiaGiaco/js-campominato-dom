@@ -72,6 +72,10 @@ main{
   background-color: deepskyblue;
 }
 
+.square.bomb{
+  background-color: brown;
+}
+
 footer{
   height: 40px;
   line-height: 40px;

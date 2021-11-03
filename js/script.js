@@ -6,9 +6,6 @@ document.getElementById('btn-play').addEventListener('click',function(){
 function play(){
   // prendo il value in base alla difficoltà selezionata
   const level = parseInt(document.getElementById('level').value)
-  // console.log(level);
-
-
 
   // ricavo il numero dei quadrati
   let numSquare;
@@ -27,6 +24,12 @@ function play(){
       squareRow = 7;
       break;
   }
+
+  
+  const NUM_BOMBS = 16;
+  const bombs = bombsGenerator();
+  console.log(bombs);
+
 
   console.log(numSquare);
   console.log(squareRow);
@@ -51,10 +54,8 @@ function play(){
       square.style.width = squareSize;
       square.style.height = squareSize;
 
-      // click sul quadreto
-      square.addEventListener('click',function(){
-        this.classList.add('clicked')
-      })
+      // click sul quadrato chiamando una funzione
+      square.addEventListener('click',clickSquare);
 
       // append dei quadrati a table
       table.append(square)
@@ -64,7 +65,32 @@ function play(){
     document.querySelector('main').append(table);
   }
 
+
+  function clickSquare(event){
+    console.log(event.target.innerText);
+
+    // aggiungo calsse al quadrato cliccato
+    this.classList.add('clicked');
+  }
+
+
+  function bombsGenerator(){
+    const bombs = [];
+    // creo bombe
+    console.log('numero bombe =',NUM_BOMBS);
+    while(bombs.length < NUM_BOMBS){
+      const bomb = getRandomNum(1,numSquare);
+      if(!bombs.includes(bomb)) bombs.push(bomb);
+    }
+
+    // restituisco array 
+    return bombs;
+  }
 }
 
+
+function getRandomNum(min, max){
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
 
 
