@@ -68,9 +68,15 @@ function play(){
 
   function clickSquare(event){
     console.log(event.target.innerText);
-
-    // aggiungo calsse al quadrato cliccato
-    this.classList.add('clicked');
+    
+    if (bombs.includes(parseInt(event.target.innerText))) {
+      console.log('hai perso');
+      return this.classList.add('bomb');
+    }else {
+      console.log('continua');
+      return this.classList.add('clicked');
+    }
+    
   }
 
 
